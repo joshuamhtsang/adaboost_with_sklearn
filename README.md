@@ -11,3 +11,12 @@ Now initialize virtualenv:
 
 $ virtualenv -p python3 .
 
+#  Install graphviz
+
+On Ubuntu Linux:
+
+$ sudo apt-get install graphviz
+
+Or for Mac:
+
+$ brew install graphviz
