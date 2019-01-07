@@ -11,7 +11,7 @@ Now initialize virtualenv:
 
 $ virtualenv -p python3 .
 
-#  Install graphviz
+#  Install graphviz on system and corresponding Python module.
 
 On Ubuntu Linux:
 
@@ -20,3 +20,7 @@ $ sudo apt-get install graphviz
 Or for Mac:
 
 $ brew install graphviz
+
+Then you also need to install the python package:
+
+$ pip3 install graphviz
