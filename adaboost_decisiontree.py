@@ -3,34 +3,52 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 import graphviz
 
-# The training examples.
+import os
 
-X = [[1, 1], [0, 0], [1, 0], [0, 1]]
-Y = [1, -1, 1, 1]
+TREE_DIAGRAM_DIR_NAME = 'tree_diagrams'
+N_ESTIMATORS = 10
 
-# Create and fit an AdaBoosted decision tree
-abc = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1),
-                         n_estimators=200)
-abc.fit(X, Y)
+if __name__ == '__main__':
+    # The training examples.
 
-print(abc.estimator_weights_)
+    X = [[1, 1], [0, 0], [1, 0], [0, 1]]
+    Y = [1, -1, 1, 1]
 
-# Output graph for estimator 0
+    # Create and fit an AdaBoosted decision tree
+    abc = AdaBoostClassifier(DecisionTreeClassifier(max_depth=1),
+                             n_estimators=N_ESTIMATORS)
+    abc.fit(X, Y)
 
-dot_data = tree.export_graphviz(abc.estimators_[0], out_file=None,
-                                class_names=['-1', '+1'])
-graph = graphviz.Source(dot_data)
-graph.render("abc1")
+    print(abc.estimator_weights_)
 
-# Output graph for estimator 1
+    # Make a directory to contain tree diagrams.
 
-dot_data = tree.export_graphviz(abc.estimators_[1], out_file=None,
-                                class_names=['-1', '+1'])
-graph = graphviz.Source(dot_data)
-graph.render("abc2")
+    if not os.path.isdir(TREE_DIAGRAM_DIR_NAME):
+        os.mkdir(TREE_DIAGRAM_DIR_NAME)
 
-print(abc.predict([[0., 0.]]))
-print(abc.predict([[1., 1.]]))
-print(abc.predict([[1., 0.]]))
-print(abc.predict([[0., 1.]]))
+    for i in range(0, N_ESTIMATORS):
+        dot_data = tree.export_graphviz(abc.estimators_[i], out_file=None,
+                                        class_names=['-1', '+1'])
+        graph = graphviz.Source(dot_data)
+        graph.render(os.path.join(TREE_DIAGRAM_DIR_NAME, "abc"+str(i)))
+
+
+    # Output graph for estimator 0
+
+    # dot_data = tree.export_graphviz(abc.estimators_[0], out_file=None,
+    #                                 class_names=['-1', '+1'])
+    # graph = graphviz.Source(dot_data)
+    # graph.render("abc1")
+
+    # Output graph for estimator 1
+
+    # dot_data = tree.export_graphviz(abc.estimators_[1], out_file=None,
+    #                                 class_names=['-1', '+1'])
+    # graph = graphviz.Source(dot_data)
+    # graph.render("abc2")
+
+    print(abc.predict([[0., 0.]]))
+    print(abc.predict([[1., 1.]]))
+    print(abc.predict([[1., 0.]]))
+    print(abc.predict([[0., 1.]]))
 
