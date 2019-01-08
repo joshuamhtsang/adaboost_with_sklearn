@@ -2,6 +2,7 @@ from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn import tree
 import graphviz
+from sklearn.datasets import load_iris
 
 import os
 
@@ -31,21 +32,6 @@ if __name__ == '__main__':
                                         class_names=['-1', '+1'])
         graph = graphviz.Source(dot_data)
         graph.render(os.path.join(TREE_DIAGRAM_DIR_NAME, "abc"+str(i)))
-
-
-    # Output graph for estimator 0
-
-    # dot_data = tree.export_graphviz(abc.estimators_[0], out_file=None,
-    #                                 class_names=['-1', '+1'])
-    # graph = graphviz.Source(dot_data)
-    # graph.render("abc1")
-
-    # Output graph for estimator 1
-
-    # dot_data = tree.export_graphviz(abc.estimators_[1], out_file=None,
-    #                                 class_names=['-1', '+1'])
-    # graph = graphviz.Source(dot_data)
-    # graph.render("abc2")
 
     print(abc.predict([[0., 0.]]))
     print(abc.predict([[1., 1.]]))
