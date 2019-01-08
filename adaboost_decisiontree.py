@@ -33,6 +33,7 @@ if __name__ == '__main__':
         graph = graphviz.Source(dot_data)
         graph.render(os.path.join(TREE_DIAGRAM_DIR_NAME, "abc"+str(i)))
 
+    # Make some predictions.
     print(abc.predict([[0., 0.]]))
     print(abc.predict([[1., 1.]]))
     print(abc.predict([[1., 0.]]))
