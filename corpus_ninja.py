@@ -8,7 +8,10 @@ def read_json_file(filename):
     with open(filename, 'r') as file_handle:
         for line in file_handle:
             print(line)
-            objs.append(json.loads(line))
+            try:
+                objs.append(json.loads(line))
+            except json.decoder.JSONDecodeError:
+                pass
 
     return objs
 
