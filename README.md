@@ -1,8 +1,8 @@
-# adaboost_with_sklearn
+### adaboost_with_sklearn
 Testing functionality of sklearn library on different datasets.
 
 
-# Creating Python 3 virtual environment.
+### Creating Python 3 virtual environment.
 
 Ensure you have virtualenv installed:
 
@@ -13,7 +13,7 @@ Now initialize virtualenv:
 $ virtualenv -p python3 .
 
 
-#  Install graphviz on system and corresponding Python module.
+### Install graphviz on system and corresponding Python module.
 
 On Ubuntu Linux:
 
@@ -28,7 +28,7 @@ Then you also need to install the python package:
 $ pip3 install graphviz
 
 
-# corpus_ninja.py usage:
+### corpus_ninja.py usage:
 
-python3 corpus_ninja.py --json_corpus small.json
+$ python3 corpus_ninja.py --json_corpus small.json
 
